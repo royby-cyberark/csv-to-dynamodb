@@ -15,7 +15,8 @@ def load_csv_to_dynamodb(table: str, csv_file: str):
 
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table(table)
-
+    
+    # Make sure your partition key (and sort key if you have one) types are the same as the json's
     for item in json_output:
         table.put_item(Item=item)
 
